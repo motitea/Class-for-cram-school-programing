@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第2回 詳細解説</title>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .preview-area {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>リアルタイムプレビュー</h1>
+        <p>下のボックスに文字を入力してください。</p>
+        
+        <textarea id="my-textarea" class="text-input" placeholder="ここに文字を入力..."></textarea>
+        
+        <div id="preview" class="preview-area"></div>
+    </div>
+
+    <script>
+        // 【ステップ1】 操作したいHTML要素を見つけて、名前をつける
+        const inputArea = document.getElementById('my-textarea');
+        const previewArea = document.getElementById('preview');
+
+        // 【ステップ2】 入力欄で「入力」という出来事が起きるのを監視する
+        inputArea.addEventListener('input', () => {
+            // 【ステップ3】 入力があった瞬間に、中の処理を実行する
+            previewArea.textContent = inputArea.value;
+        });
+    </script>
+
+</body>
+</html>
