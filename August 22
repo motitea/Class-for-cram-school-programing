@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第1回 詳細解説</title>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            /* cursor: pointer; は、マウスカーソルを手の形に変え、「クリックできる」ことをユーザーに伝えます */
+            cursor: pointer; 
+            /* transitionは、ホバーした時の色の変化を0.3秒かけて滑らかにします */
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="main-heading">ようこそ！</h1>
+    <p>下のボタンを押してみてください。</p>
+    <button id="change-button">クリック！</button>
+
+    <script>
+        // 【ステップ1】 HTML要素を見つけて、名前をつける
+        const headingElement = document.getElementById('main-heading');
+        const clickButton = document.getElementById('change-button');
+
+        // 【ステップ2】 ボタンに「クリックされたら〜する」という命令をセットする
+        clickButton.addEventListener('click', () => {
+            // 【ステップ3】 実際に実行される処理
+            headingElement.textContent = 'JavaScriptの世界へようこそ！🎉';
+        });
+    </script>
+
+</body>
+</html>
