@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第4回 詳細解説</title>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .accordion-item {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .accordion-title {
+            background-color: #f1f1f1;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .accordion-content {
+            padding: 0 15px; /* 開いた時の左右の余白 */
+            /* ★最初は高さを0にして、中身が見えないように隠しておく */
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-out; /* 高さとpaddingの変化を滑らかに */
+        }
+        /* is-openクラスがついた時に、高さを広げて表示する */
+        .accordion-content.is-open {
+            padding: 15px;
+            max-height: 200px; /* 十分な高さを確保 */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>よくある質問（Q&A）</h1>
+    <p>質問タイトルをクリックすると、答えが開きます。</p>
+
+    <div class="accordion-item">
+        <div class="accordion-title">質問1：JavaScriptとは何ですか？</div>
+        <div class="accordion-content">
+            <p>JavaScriptは、Webページに動きや機能を追加するためのプログラミング言語です。現代のWebサイト制作には欠かせない技術の一つです。</p>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-title">質問2：HTML、CSSとの違いは？</div>
+        <div class="accordion-content">
+            <p>HTMLが骨格、CSSが見た目を担当するのに対し、JavaScriptは「機能」や「動き」を担当します。例えば、ボタンを押した時の動作や、アニメーションなどを実装します。</p>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-title">質問3：学習は難しいですか？</div>
+        <div class="accordion-content">
+            <p>HTML/CSSの知識があれば、比較的スムーズに学習を始めることができます。まずは簡単なDOM操作から始め、少しずつステップアップしていくのがおすすめです。</p>
+        </div>
+    </div>
+
+    <script>
+        // 【ステップ1】 操作したい複数のHTML要素を「リスト」としてまとめて取得する
+        const accordionTitles = document.querySelectorAll('.accordion-title');
+
+        // 【ステップ2】 取得したリストの各要素に対して、同じ処理を繰り返し設定する
+        accordionTitles.forEach((title) => {
+            // 【ステップ3】 各タイトルがクリックされた時の処理
+            title.addEventListener('click', () => {
+                // 【ステップ4】 クリックされたタイトルの「すぐ隣の要素」（＝答えの部分）を取得
+                const content = title.nextElementSibling;
+                
+                // 【ステップ5】 答えの部分に 'is-open' クラスを付けたり外したりする
+                content.classList.toggle('is-open');
+            });
+        });
+    </script>
+</body>
+</html>
