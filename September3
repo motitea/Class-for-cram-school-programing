@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第3回</title>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            margin: 20px auto;
+            /* transitionで変化を滑らかにします */
+            transition: all 0.5s;
+        }
+
+        /* ★JSで付け外しするためのCSSクラスを事前に用意しておきます */
+        .box.is-active {
+            background-color: tomato;
+            border-radius: 50%; /* 円形にする */
+            transform: rotate(360deg); /* 360度回転させる */
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <p>ボタンを押すと、下の四角が変化します。</p>
+    <div id="shape-box" class="box"></div>
+    <button id="toggle-button">変化させる！</button>
+
+    <script>
+        // 1. 操作したいHTML要素を取得
+        const shapeBox = document.getElementById('shape-box');
+        const toggleButton = document.getElementById('toggle-button');
+
+        // 2. ボタンがクリックされた時の処理を設定
+        toggleButton.addEventListener('click', () => {
+            // 3. shapeBoxのclass属性を操作する
+            // classList.toggle('クラス名') は、指定したクラスがあれば削除し、なければ追加する命令です
+            // まさに電気のスイッチのようにON/OFFを切り替えてくれます
+            shapeBox.classList.toggle('is-active');
+        });
+    </script>
+
+</body>
+</html>
