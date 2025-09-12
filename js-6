@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第6回</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; }
+        .profile-card { width: 300px; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .profile-card h2 { text-align: center; }
+        .profile-card p { font-size: 1.1em; line-height: 1.6; }
+        .profile-card strong { color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <h2>プロフィール</h2>
+        <p><strong>名前:</strong> <span id="user-name"></span></p>
+        <p><strong>年齢:</strong> <span id="user-age"></span></p>
+        <p><strong>趣味:</strong> <span id="user-hobby"></span></p>
+    </div>
+
+    <script>
+        // ★「オブジェクト」を作成します。
+        // { キー: 値 } のペアで、関連するデータをまとめます。
+        const user = {
+            name: '山田 太郎',
+            age: 30,
+            hobby: 'プログラミング'
+        };
+
+        // 表示させたいHTML要素を取得
+        const userNameElement = document.getElementById('user-name');
+        const userAgeElement = document.getElementById('user-age');
+        const userHobbyElement = document.getElementById('user-hobby');
+
+        // オブジェクトのデータを、それぞれのHTML要素のテキストとして設定する
+        // オブジェクトの値には「オブジェクト名.キー名」でアクセスできます
+        userNameElement.textContent = user.name;
+        userAgeElement.textContent = user.age;
+        userHobbyElement.textContent = user.hobby;
+    </script>
+</body>
+</html>
