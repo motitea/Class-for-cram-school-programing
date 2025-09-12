@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第9回</title>
+    <style>
+        /* CSS変数を定義 */
+        :root {
+            --background-color: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            transition: all 0.3s;
+        }
+
+        /* ダークモード用のクラス */
+        body.dark-mode {
+            --background-color: #333333;
+            --text-color: #ffffff;
+        }
+        
+        #theme-toggle { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>ダークモード切替</h1>
+    <p>ボタンを押すと、テーマが切り替わります。</p>
+    <button id="theme-toggle">テーマを切り替える</button>
+
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const bodyElement = document.body;
+
+        // ★ページ読み込み時に、保存されたテーマを適用する
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            bodyElement.classList.add('dark-mode');
+        }
+
+        // ボタンがクリックされた時の処理
+        toggleButton.addEventListener('click', () => {
+            // bodyに 'dark-mode' クラスを付け外しする
+            bodyElement.classList.toggle('dark-mode');
+
+            // ★現在のテーマ設定をlocalStorageに保存する
+            if (bodyElement.classList.contains('dark-mode')) {
+                // もしダークモードなら、'theme'という名前で'dark'という値を保存
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // そうでなければ、'theme'の値を削除
+                localStorage.removeItem('theme');
+            }
+        });
+    </script>
+</body>
+</html>
