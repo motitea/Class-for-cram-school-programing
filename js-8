@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第8回</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; }
+        .todo-app { width: 90%; max-width: 400px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .input-area { display: flex; gap: 10px; }
+        #todo-input { flex-grow: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        #add-button { padding: 10px 15px; border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer; }
+        #todo-list { list-style: none; padding: 0; margin-top: 20px; }
+        .todo-item { display: flex; align-items: center; background: #f9f9f9; padding: 10px; margin-bottom: 5px; border-radius: 4px; }
+        .todo-item span { flex-grow: 1; }
+        .delete-button { border: none; background: #dc3545; color: white; border-radius: 4px; cursor: pointer; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <div class="todo-app">
+        <h1>To-Doリスト</h1>
+        <div class="input-area">
+            <input type="text" id="todo-input" placeholder="新しいタスクを入力">
+            <button id="add-button">追加</button>
+        </div>
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+        // HTML要素を取得
+        const addButton = document.getElementById('add-button');
+        const todoInput = document.getElementById('todo-input');
+        const todoList = document.getElementById('todo-list');
+
+        // 「追加」ボタンがクリックされた時の処理
+        addButton.addEventListener('click', () => {
+            const taskText = todoInput.value.trim(); // .trim()で前後の空白を削除
+
+            // 入力欄が空でなければ、タスクを追加
+            if (taskText !== '') {
+                // 1. li要素を新しく作る
+                const listItem = document.createElement('li');
+                listItem.classList.add('todo-item');
+                
+                // 2. liの中身を作る（タスク名と削除ボタン）
+                listItem.innerHTML = `
+                    <span>${taskText}</span>
+                    <button class="delete-button">削除</button>
+                `;
+                
+                // 3. ulに新しいliを追加する
+                todoList.appendChild(listItem);
+                
+                // 4. 入力欄を空にする
+                todoInput.value = '';
+                
+                // ★今追加したタスクの「削除」ボタンに、クリックイベントを設定
+                const deleteButton = listItem.querySelector('.delete-button');
+                deleteButton.addEventListener('click', () => {
+                    // listItem（li要素そのもの）を削除する
+                    listItem.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
