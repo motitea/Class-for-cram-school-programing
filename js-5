@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第5回</title>
+
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        ul { list-style: none; padding: 0; }
+        li { background-color: #f0f0f0; padding: 10px; margin-bottom: 5px; border-radius: 5px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; display: block; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>好きな果物リスト</h1>
+        <p>ボタンを押すと、リストがページに表示されます。</p>
+        <button id="show-button">リストを表示</button>
+        <ul id="fruit-list"></ul>
+    </div>
+
+    <script>
+        // 操作したいHTML要素を取得
+        const showButton = document.getElementById('show-button');
+        const fruitList = document.getElementById('fruit-list');
+
+        // ★「配列」を作成します。複数のデータを[]で囲んで、カンマで区切ります。
+        const fruits = ['りんご', 'バナナ', 'いちご', 'みかん'];
+
+        // ボタンがクリックされた時の処理
+        showButton.addEventListener('click', () => {
+            // 配列の各要素に対して、forEachで繰り返し処理を行う
+            fruits.forEach((fruit) => {
+                // 1. li要素を新しく作成する
+                const liElement = document.createElement('li');
+                
+                // 2. li要素のテキスト内容に、配列の要素（fruit）を設定する
+                liElement.textContent = fruit;
+                
+                // 3. ul要素（fruitList）の子要素として、作成したli要素を追加する
+                fruitList.appendChild(liElement);
+            });
+            
+            // ボタンを一度押したら、それ以上追加されないように非表示にする
+            showButton.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
