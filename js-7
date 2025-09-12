@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript入門 - 第7回</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f7f9; padding: 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .product-card { background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; text-align: center; }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; }
+        .product-card h3 { margin: 15px 0 10px; }
+        .product-card p { margin: 0 0 15px; font-weight: bold; color: #007bff; }
+        @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>商品一覧</h1>
+    <div id="product-list" class="product-grid"></div>
+
+    <script>
+        // ★オブジェクトを要素に持つ「配列」を作成
+        const products = [
+            { id: 1, name: '高機能カメラ', price: 50000, imageUrl: 'https://via.placeholder.com/300x200?text=Camera' },
+            { id: 2, name: 'ワイヤレスヘッドホン', price: 15000, imageUrl: 'https://via.placeholder.com/300x200?text=Headphones' },
+            { id: 3, name: 'スマートウォッチ', price: 30000, imageUrl: 'https://via.placeholder.com/300x200?text=Watch' }
+        ];
+        
+        // 商品カードを挿入する親要素を取得
+        const productListContainer = document.getElementById('product-list');
+
+        // 配列の各商品データ（オブジェクト）に対して、繰り返し処理を行う
+        products.forEach((product) => {
+            // 1. 新しいdiv要素（商品カード）を作成
+            const card = document.createElement('div');
+            card.classList.add('product-card'); // CSSのスタイルを適用するためにクラスを追加
+            
+            // 2. カードの中身となるHTMLを、テンプレートリテラル（``）を使って作成
+            // ${...} の中に変数を埋め込めます
+            const cardContent = `
+                <img src="${product.imageUrl}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.price.toLocaleString()}円</p>
+            `;
+            
+            // 3. 作成したHTMLを、カード（div）の中に入れる
+            card.innerHTML = cardContent;
+            
+            // 4. 親要素に、完成したカードを追加する
+            productListContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>
